@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Energi Check: entenda seu consumo de energia, estime sua conta de luz e descubra formas práticas de economizar.">
+    <title>Energi Check | Sua conta de energia estimada</title>
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <script src="js/scripts.js" defer></script>
+</head>
+<body>
+    <nav class="site-nav">
+        <div class="nav-inner">
+            <a class="brand" href="#inicio" aria-label="energicheck, início">
+                <span class="brand-mark">E</span><span>ENERGI <b>CHECK</b></span>
+            </a>
+            <button class="menu-toggle" type="button" aria-controls="main-menu" aria-expanded="false" aria-label="Abrir menu">
+                <i class="bi-list" aria-hidden="true"></i>
+            </button>
+            <div class="nav-menu" id="main-menu">
+                <a class="nav-link active" href="#inicio">Início</a>
+                <a class="nav-link" href="#economia">Simulador</a>
+                <a class="nav-link" href="#sobre">Sobre</a>
+            </div>
+            <a class="cart-button" href="#economia" aria-label="Simular conta de energia">
+                <i class="bi-lightning-charge-fill" aria-hidden="true"></i><span>Simular conta</span>
+            </a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero page-width" id="inicio">
+            <div class="hero-content">
+                <p class="eyebrow"><span></span> MAIS CLAREZA PARA SUA CONTA DE LUZ</p>
+                <h1>Sua conta de luz<br>com mais <em>clareza.</em></h1>
+                <p class="hero-copy">Estime seu consumo e descubra maneiras práticas de usar energia com mais consciência no dia a dia.</p>
+                <div class="hero-actions">
+                    <a class="button button-primary" href="#economia">Simule sua conta <i class="bi-arrow-right" aria-hidden="true"></i></a>
+                </div>
+                <div class="hero-note">
+                    <i class="bi-lightning-charge-fill" aria-hidden="true"></i>
+                    <span><b>Simples e rápido</b><br>Use seu consumo em kWh</span>
+                    <span class="note-divider"></span>
+                    <span><b>Dicas práticas</b><br>Para economizar em casa</span>
+                </div>
+            </div>
+            <div class="hero-food">
+                <span class="burst"><i class="bi-lightning-charge-fill" aria-hidden="true"></i><br><small>economia</small></span>
+                <img src="imagens/hero.jpg" alt="Lâmpada LED representando o uso eficiente de energia">
+            </div>
+        </section>
+
+        <section class="trust-bar page-width" aria-label="Diferenciais do serviço">
+            <div><i class="bi-calculator" aria-hidden="true"></i><span><b>Estimativa simples</b><small>Entenda melhor seu consumo</small></span></div>
+            <div><i class="bi-lightbulb" aria-hidden="true"></i><span><b>Dicas que ajudam</b><small>Pequenas mudanças no dia a dia</small></span></div>
+            <div><i class="bi-bar-chart-line" aria-hidden="true"></i><span><b>Consumo consciente</b><small>Mais informação para decidir</small></span></div>
+        </section>
+        <section class="energy-section" id="economia">
+            <div class="energy-inner page-width">
+                <div class="energy-copy">
+                    <p class="eyebrow"><span></span> CONHEÇA SEU CONSUMO</p>
+                    <h2>Mais clareza para<br>sua conta de <em>luz.</em></h2>
+                    <p>Informe o consumo em kWh da sua conta anterior e quantas pessoas moram na casa para entender melhor o gasto mensal.</p>
+                    <span class="energy-rate"><i class="bi-lightning-charge-fill" aria-hidden="true"></i> Tarifa média considerada: <b id="tariff-display"></b> por kWh</span>
+                </div>
+                <div class="energy-card">
+                    <h3>Analise sua conta de luz</h3>
+                    <p class="energy-card-copy">Use os dados de consumo em kWh da sua conta mais recente.</p>
+                    <form id="consumption-form" data-tariff="0.81">
+                        <div class="resident-selector">
+                            <label class="field-label" for="resident-count">Quantas pessoas moram na casa?</label>
+                            <input id="resident-count" name="residents" type="number" min="1" step="1" inputmode="numeric" placeholder="Ex.: 3" required>
+                        </div>
+                        <div class="resident-selector">
+                            <label class="field-label" for="previous-consumption">Consumo da conta anterior (kWh)</label>
+                            <input id="previous-consumption" name="previous-consumption" type="number" min="0" step="any" inputmode="decimal" placeholder="Ex.: 250">
+                        </div>
+                        <p class="form-note">A classificação considera o consumo por morador: baixo até 100 kWh, médio acima de 100 até 300 kWh e alto acima de 300 kWh por pessoa. A projeção com dicas simula uma redução de 10%, mas a economia real varia.</p>
+                    </form>
+                    <section class="result" id="result" aria-live="polite" aria-atomic="true" hidden>
+                        <div class="result-heading">
+                            <span class="result-icon" id="result-icon" aria-hidden="true"></span>
+                            <div><p class="result-label" id="result-label"></p><h4 id="result-title"></h4></div>
+                        </div>
+                        <p class="result-summary" id="result-summary"></p>
+                        <div class="estimate">
+                            <span>Consumo atual<strong id="estimated-consumption"></strong></span>
+                            <span>Conta atual estimada (inclui R$ 14 de taxas)<strong id="estimated-cost"></strong></span>
+                            <span>Consumo com dicas (−10%)<strong id="projected-consumption"></strong></span>
+                            <span>Conta com dicas (inclui R$ 14 de taxas)<strong id="projected-cost"></strong></span>
+                        </div>
+                        <div class="tips"><h5 id="tips-heading"></h5><ul id="tips-list"></ul></div>
+                    </section>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-section page-width" id="sobre">
+            <div class="about-image"><img src="imagens/story.jpg" alt="Linhas de transmissão de energia ao pôr do sol"></div>
+            <div class="about-copy"><p class="eyebrow">INFORMAÇÃO QUE FAZ DIFERENÇA</p><h2>Energia inteligente<br>começa com <em>informação.</em></h2><p>A Energi Check ajuda você a visualizar seu consumo com uma estimativa simples e dicas para adotar hábitos mais eficientes em casa. Nos apoiamos o uso de enrgias renováveis mas por enquanto que ela não é disponivel a todos usamos a energia consciente.</p><a class="text-link" href="#economia">Faça sua simulação <i class="bi-arrow-right" aria-hidden="true"></i></a></div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <a class="brand" href="#inicio"><span class="brand-mark">E</span><span>ENERGI <b>CHECK</b></span></a>
+        <span>Mais clareza, escolhas mais conscientes. <i class="bi-lightning-charge-fill" aria-hidden="true"></i></span>
+        <span class="estimate-disclaimer">Estimativa simplificada: tarifas, impostos e cobranças locais podem alterar o valor real da conta.</span>
+    </footer>
+    <div class="toast" role="status" aria-live="polite"><i class="bi-check-circle-fill" aria-hidden="true"></i><span></span></div>
+</body>
+</html>
