@@ -65,20 +65,23 @@
                 <div class="energy-copy">
                     <p class="eyebrow"><span></span> CONHEÇA SEU CONSUMO</p>
                     <h2>Mais clareza para<br>sua conta de <em>luz.</em></h2>
-                    <p>Informe o consumo em kWh da sua conta anterior e quantas pessoas moram na casa para entender melhor o gasto mensal.</p>
-                    <span class="energy-rate"><i class="bi-lightning-charge-fill" aria-hidden="true"></i> Tarifa média considerada: <b id="tariff-display"></b> por kWh</span>
+                    <p>Informe o consumo em kWh e o valor do kWh da sua conta anterior, além do número de moradores, para analisar o gasto mensal.</p>
                 </div>
                 <div class="energy-card">
                     <h3>Analise sua conta de luz</h3>
-                    <p class="energy-card-copy">Use os dados de consumo em kWh da sua conta mais recente.</p>
-                    <form id="consumption-form" data-tariff="0.81">
+                    <p class="energy-card-copy">Use os dados de consumo e tarifa da sua conta mais recente.</p>
+                    <form id="consumption-form">
                         <div class="resident-selector">
                             <label class="field-label" for="resident-count">Quantas pessoas moram na casa?</label>
                             <input id="resident-count" name="residents" type="number" min="1" step="1" inputmode="numeric" placeholder="Ex.: 3" required>
                         </div>
                         <div class="resident-selector">
                             <label class="field-label" for="previous-consumption">Consumo da conta anterior (kWh)</label>
-                            <input id="previous-consumption" name="previous-consumption" type="number" min="0" step="any" inputmode="decimal" placeholder="Ex.: 250">
+                            <input id="previous-consumption" name="previous-consumption" type="number" min="0" step="any" inputmode="decimal" placeholder="Ex.: 250" required>
+                        </div>
+                        <div class="resident-selector">
+                            <label class="field-label" for="previous-tariff">Valor do kWh na conta anterior (R$/kWh)</label>
+                            <input id="previous-tariff" name="previous-tariff" type="number" min="0" step="any" inputmode="decimal" placeholder="Ex.: 0,81" required>
                         </div>
                         <p class="form-note">A classificação considera o consumo por morador: baixo até 100 kWh, médio acima de 100 até 300 kWh e alto acima de 300 kWh por pessoa. A projeção com dicas simula uma redução de 10%, mas a economia real varia.</p>
                     </form>
@@ -90,9 +93,9 @@
                         <p class="result-summary" id="result-summary"></p>
                         <div class="estimate">
                             <span>Consumo atual<strong id="estimated-consumption"></strong></span>
-                            <span>Conta atual estimada (inclui R$ 14 de taxas)<strong id="estimated-cost"></strong></span>
+                            <span>Conta atual estimada (inclui R$ 10 de taxas)<strong id="estimated-cost"></strong></span>
                             <span>Consumo com dicas (−10%)<strong id="projected-consumption"></strong></span>
-                            <span>Conta com dicas (inclui R$ 14 de taxas)<strong id="projected-cost"></strong></span>
+                            <span>Conta com dicas (inclui R$ 10 de taxas)<strong id="projected-cost"></strong></span>
                         </div>
                         <div class="tips"><h5 id="tips-heading"></h5><ul id="tips-list"></ul></div>
                     </section>

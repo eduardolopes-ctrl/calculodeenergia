@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('#consumption-form');
     const residentCount = form.querySelector('#resident-count');
     const previousConsumption = form.querySelector('#previous-consumption');
+    const previousTariff = form.querySelector('#previous-tariff');
     const result = document.querySelector('#result');
     const resultIcon = document.querySelector('#result-icon');
     const resultLabel = document.querySelector('#result-label');
@@ -13,8 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const projectedCost = document.querySelector('#projected-cost');
     const tipsHeading = document.querySelector('#tips-heading');
     const tipsList = document.querySelector('#tips-list');
-    const tariff = Number(form.dataset.tariff);
-    const governmentFees = 14;
+    const governmentFees = 10;
 
     const currency = new Intl.NumberFormat('pt-BR', {
         style: 'currency',
@@ -24,15 +24,17 @@ document.addEventListener('DOMContentLoaded', () => {
         maximumFractionDigits: 2
     });
 
-    document.querySelector('#tariff-display').textContent = currency.format(tariff);
-
     function updateResult() {
         const consumption = Number(previousConsumption.value);
         const residents = Number(residentCount.value);
+        const tariff = Number(previousTariff.value);
         if (
             previousConsumption.value === '' ||
             !Number.isFinite(consumption) ||
             consumption < 0 ||
+            previousTariff.value === '' ||
+            !Number.isFinite(tariff) ||
+            tariff < 0 ||
             residentCount.value === '' ||
             !Number.isInteger(residents) ||
             residents < 1
@@ -57,7 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const residentDescription = `${residents} ${residents === 1 ? 'pessoa' : 'pessoas'}`;
         resultSummary.textContent =
             `${number.format(consumptionPerResident)} kWh por pessoa/mês, considerando ${residentDescription}. ` +
-            'As contas estimadas incluem R$ 14,00 de taxas do governo.';
+            `Cálculo da conta com tarifa de ${currency.format(tariff)} por kWh. ` +
+            'As contas estimadas incluem R$ 10,00 de taxas do governo.';
         estimatedConsumption.textContent = `${number.format(consumption)} kWh/mês`;
         estimatedCost.textContent = currency.format(cost);
         projectedConsumption.textContent = `${number.format(projectedKwh)} kWh/mês`;

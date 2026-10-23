@@ -588,25 +588,6 @@ h1 em,
     line-height: 1.8;
 }
 
-.energy-rate {
-    display: inline-flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 6px;
-    color: #586b70;
-    font-size: 11px;
-}
-
-.energy-rate > i {
-    margin-right: 3px;
-    color: var(--berry);
-    font-size: 16px;
-}
-
-.energy-rate b {
-    color: var(--berry);
-}
-
 .energy-card {
     padding: 29px;
     border: 1px solid rgba(24, 59, 57, 0.09);
