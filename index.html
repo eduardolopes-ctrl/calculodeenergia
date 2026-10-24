@@ -65,40 +65,31 @@
                 <div class="energy-copy">
                     <p class="eyebrow"><span></span> CONHEÇA SEU CONSUMO</p>
                     <h2>Mais clareza para<br>sua conta de <em>luz.</em></h2>
-                    <p>Informe o consumo em kWh e o valor do kWh da sua conta anterior, além do número de moradores, para analisar o gasto mensal.</p>
+                    <p>Informe o valor total da sua conta e o consumo mensal para descobrir a tarifa média e entender seu perfil de consumo.</p>
                 </div>
                 <div class="energy-card">
                     <h3>Analise sua conta de luz</h3>
-                    <p class="energy-card-copy">Use os dados de consumo e tarifa da sua conta mais recente.</p>
-                    <form id="consumption-form">
+                    <p class="energy-card-copy">Informe o valor total e o consumo mensal da sua conta mais recente.</p>
+                    <form id="reverse-calculation-form" novalidate>
                         <div class="resident-selector">
-                            <label class="field-label" for="resident-count">Quantas pessoas moram na casa?</label>
-                            <input id="resident-count" name="residents" type="number" min="1" step="1" inputmode="numeric" placeholder="Ex.: 3" required>
+                            <label class="field-label" for="bill-total">Valor total da conta (R$)</label>
+                            <input id="bill-total" name="bill-total" type="number" min="0" step="any" inputmode="decimal" placeholder="Ex.: 220,00" required>
                         </div>
                         <div class="resident-selector">
-                            <label class="field-label" for="previous-consumption">Consumo da conta anterior (kWh)</label>
-                            <input id="previous-consumption" name="previous-consumption" type="number" min="0" step="any" inputmode="decimal" placeholder="Ex.: 250" required>
+                            <label class="field-label" for="bill-consumption">Consumo mensal (kWh)</label>
+                            <input id="bill-consumption" name="bill-consumption" type="number" min="0" step="any" inputmode="decimal" placeholder="Ex.: 250" required>
                         </div>
-                        <div class="resident-selector">
-                            <label class="field-label" for="previous-tariff">Valor do kWh na conta anterior (R$/kWh)</label>
-                            <input id="previous-tariff" name="previous-tariff" type="number" min="0" step="any" inputmode="decimal" placeholder="Ex.: 0,81" required>
-                        </div>
-                        <p class="form-note">A classificação considera o consumo por morador: baixo até 100 kWh, médio acima de 100 até 300 kWh e alto acima de 300 kWh por pessoa. A projeção com dicas simula uma redução de 10%, mas a economia real varia.</p>
+                        <button class="button button-primary reverse-calculator-button" type="submit">Calcular meu consumo</button>
                     </form>
-                    <section class="result" id="result" aria-live="polite" aria-atomic="true" hidden>
-                        <div class="result-heading">
-                            <span class="result-icon" id="result-icon" aria-hidden="true"></span>
-                            <div><p class="result-label" id="result-label"></p><h4 id="result-title"></h4></div>
-                        </div>
-                        <p class="result-summary" id="result-summary"></p>
-                        <div class="estimate">
-                            <span>Consumo atual<strong id="estimated-consumption"></strong></span>
-                            <span>Conta atual estimada (inclui R$ 10 de taxas)<strong id="estimated-cost"></strong></span>
-                            <span>Consumo com dicas (−10%)<strong id="projected-consumption"></strong></span>
-                            <span>Conta com dicas (inclui R$ 10 de taxas)<strong id="projected-cost"></strong></span>
-                        </div>
-                        <div class="tips"><h5 id="tips-heading"></h5><ul id="tips-list"></ul></div>
-                    </section>
+                    <div class="reverse-result" id="reverse-result" role="status" aria-live="polite" aria-atomic="true" hidden>
+                        <p class="reverse-result-message" id="reverse-result-message"></p>
+                        <p class="reverse-consumption-level" id="reverse-consumption-level"></p>
+                        <section class="consumption-tips" id="consumption-tips" aria-labelledby="consumption-tips-heading" hidden>
+                            <h4 id="consumption-tips-heading">Ideias práticas para reduzir o consumo</h4>
+                            <ul id="consumption-tips-list"></ul>
+                        </section>
+                    </div>
+                    <p class="form-note">Classificação mensal: baixo até 100 kWh, médio acima de 100 até 300 kWh e alto acima de 300 kWh. A tarifa média estimada considera os impostos e as bandeiras tarifárias incluídos no valor informado.</p>
                 </div>
             </div>
         </section>
