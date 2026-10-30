@@ -7,6 +7,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const consumptionLevel = document.querySelector('#reverse-consumption-level');
     const consumptionTips = document.querySelector('#consumption-tips');
     const consumptionTipsList = document.querySelector('#consumption-tips-list');
+    const applianceForm = document.querySelector('#appliance-questionnaire');
+    const applianceResult = document.querySelector('#appliance-result');
+    const applianceResultHeading = document.querySelector('#appliance-result-heading');
+    const applianceRankingList = document.querySelector('#appliance-ranking-list');
+    const curiosityText = document.querySelector('#energy-curiosity-text');
+    const nextCuriosityButton = document.querySelector('#energy-curiosity-next');
+    const curiosities = [
+        'Uma lâmpada de LED pode usar até 80% menos energia que uma lâmpada incandescente para produzir uma quantidade parecida de luz.',
+        'Um aparelho de 1.500 W ligado por uma hora consome 1,5 kWh. A potência e o tempo de uso juntos ajudam a estimar o gasto.',
+        'Um chuveiro de 5.500 W usado por 10 minutos por dia consome cerca de 27,5 kWh em 30 dias.',
+        'Abrir a geladeira muitas vezes ou deixar a porta aberta por muito tempo faz o aparelho trabalhar mais para recuperar a temperatura.',
+        'O consumo indicado na etiqueta do aparelho é uma estimativa de teste. O uso real varia com o modelo, a instalação e os hábitos da casa.'
+    ];
+    let curiosityIndex = 0;
+    const applianceEstimates = {
+        shower: { name: 'Chuveiro elétrico', consumption: 165 },
+        'air-conditioner': { name: 'Ar-condicionado', consumption: 120 },
+        refrigerator: { name: 'Geladeira', consumption: 56 },
+        freezer: { name: 'Freezer', consumption: 50 },
+        dryer: { name: 'Secadora de roupas', consumption: 60 },
+        'washing-machine': { name: 'Máquina de lavar', consumption: 15 },
+        'electric-oven': { name: 'Forno elétrico', consumption: 15 },
+        computer: { name: 'Computador', consumption: 30 },
+        microwave: { name: 'Micro-ondas', consumption: 10 },
+        television: { name: 'Televisão', consumption: 13 },
+        lighting: { name: 'Lâmpadas LED', consumption: 15 }
+    };
     const tipsByLevel = {
         baixo: [
             'Meça por alguns dias os aparelhos que ficam ligados direto (como modem, TV e computador) com um medidor de tomada. Some os kWh medidos antes de decidir o que vale desligar.',
@@ -70,5 +97,46 @@ document.addEventListener('DOMContentLoaded', () => {
         }));
         consumptionTips.hidden = false;
         result.hidden = false;
+    });
+
+    applianceForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const selectedAppliances = [...applianceForm.querySelectorAll('input[name="appliances"]:checked')]
+            .map((input) => applianceEstimates[input.value])
+            .sort((first, second) => second.consumption - first.consumption);
+
+        applianceRankingList.replaceChildren();
+        if (selectedAppliances.length === 0) {
+            applianceResultHeading.textContent = 'Marque pelo menos um aparelho para ver o resultado.';
+            applianceResult.hidden = false;
+            return;
+        }
+
+        applianceResultHeading.textContent = 'Os que mais podem consumir na sua casa:';
+        applianceRankingList.replaceChildren(...selectedAppliances.map((appliance, index) => {
+            const item = document.createElement('li');
+            item.className = 'appliance-ranking-item';
+
+            const position = document.createElement('span');
+            position.className = 'appliance-position';
+            position.textContent = String(index + 1).padStart(2, '0');
+            position.setAttribute('aria-hidden', 'true');
+
+            const details = document.createElement('div');
+            const name = document.createElement('h4');
+            name.textContent = appliance.name;
+            const estimate = document.createElement('p');
+            estimate.textContent = `Cerca de ${appliance.consumption} kWh/mês`;
+            details.append(name, estimate);
+            item.append(position, details);
+            return item;
+        }));
+        applianceResult.hidden = false;
+    });
+
+    nextCuriosityButton.addEventListener('click', () => {
+        curiosityIndex = (curiosityIndex + 1) % curiosities.length;
+        curiosityText.textContent = curiosities[curiosityIndex];
     });
 });

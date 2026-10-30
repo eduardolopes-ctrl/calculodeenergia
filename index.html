@@ -98,6 +98,47 @@
             <div class="about-image"><img src="imagens/story.jpg" alt="Linhas de transmissão de energia ao pôr do sol"></div>
             <div class="about-copy"><p class="eyebrow">INFORMAÇÃO QUE FAZ DIFERENÇA</p><h2>Energia inteligente<br>começa com <em>informação.</em></h2><p>A Energi Check ajuda você a visualizar seu consumo com uma estimativa simples e dicas para adotar hábitos mais eficientes em casa. Nos apoiamos o uso de enrgias renováveis mas por enquanto que ela não é disponivel a todos usamos a energia consciente.</p><a class="text-link" href="#economia">Faça sua simulação <i class="bi-arrow-right" aria-hidden="true"></i></a></div>
         </section>
+
+        <section class="appliance-ranking" aria-labelledby="appliance-ranking-heading">
+            <div class="page-width">
+                <div class="appliance-ranking-heading">
+                    <p class="eyebrow"><span></span> CONSUMO NO DIA A DIA</p>
+                    <h2 id="appliance-ranking-heading">Quais aparelhos você tem em casa?</h2>
+                    <p>Marque os aparelhos que usa e veja quais podem pesar mais no seu consumo mensal. Os valores são estimativas e variam conforme o modelo e o tempo de uso.</p>
+                </div>
+                <form class="appliance-questionnaire" id="appliance-questionnaire">
+                    <fieldset class="appliance-options">
+                        <legend>Selecione os aparelhos que você tem</legend>
+                        <label class="appliance-option"><input type="checkbox" name="appliances" value="shower"><span><b>Chuveiro elétrico</b><small>Banhos diários</small></span></label>
+                        <label class="appliance-option"><input type="checkbox" name="appliances" value="air-conditioner"><span><b>Ar-condicionado</b><small>Uso frequente</small></span></label>
+                        <label class="appliance-option"><input type="checkbox" name="appliances" value="refrigerator"><span><b>Geladeira</b><small>Ligada continuamente</small></span></label>
+                        <label class="appliance-option"><input type="checkbox" name="appliances" value="freezer"><span><b>Freezer</b><small>Ligado continuamente</small></span></label>
+                        <label class="appliance-option"><input type="checkbox" name="appliances" value="dryer"><span><b>Secadora de roupas</b><small>Alguns ciclos por semana</small></span></label>
+                        <label class="appliance-option"><input type="checkbox" name="appliances" value="washing-machine"><span><b>Máquina de lavar</b><small>Alguns ciclos por semana</small></span></label>
+                        <label class="appliance-option"><input type="checkbox" name="appliances" value="electric-oven"><span><b>Forno elétrico</b><small>Uso ocasional</small></span></label>
+                        <label class="appliance-option"><input type="checkbox" name="appliances" value="computer"><span><b>Computador</b><small>Uso diário</small></span></label>
+                        <label class="appliance-option"><input type="checkbox" name="appliances" value="microwave"><span><b>Micro-ondas</b><small>Uso diário</small></span></label>
+                        <label class="appliance-option"><input type="checkbox" name="appliances" value="television"><span><b>Televisão</b><small>Uso diário</small></span></label>
+                        <label class="appliance-option"><input type="checkbox" name="appliances" value="lighting"><span><b>Lâmpadas LED</b><small>Vários cômodos</small></span></label>
+                    </fieldset>
+                    <button class="button button-primary appliance-submit" type="submit">Ver meu ranking <i class="bi-arrow-right" aria-hidden="true"></i></button>
+                    <div class="appliance-result" id="appliance-result" role="status" aria-live="polite" hidden>
+                        <h3 id="appliance-result-heading"></h3>
+                        <ol class="appliance-ranking-list" id="appliance-ranking-list"></ol>
+                    </div>
+                </form>
+                <aside class="energy-curiosity">
+                    <span aria-hidden="true">💡</span>
+                    <div class="energy-curiosity-content">
+                        <h3>Curiosidade</h3>
+                        <p id="energy-curiosity-text" aria-live="polite">Uma lâmpada de LED pode usar até 80% menos energia que uma lâmpada incandescente para produzir uma quantidade parecida de luz.</p>
+                    </div>
+                    <button class="energy-curiosity-next" id="energy-curiosity-next" type="button" aria-controls="energy-curiosity-text">
+                        <i class="bi-arrow-repeat" aria-hidden="true"></i> Outra curiosidade
+                    </button>
+                </aside>
+            </div>
+        </section>
     </main>
 
     <footer class="site-footer">
